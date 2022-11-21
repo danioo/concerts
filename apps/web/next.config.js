@@ -1,11 +1,11 @@
 const path = require("path");
 
-const withTM = require("next-transpile-modules")(["ui"]);
-
-module.exports = withTM({
+module.exports = {
   reactStrictMode: true,
   output: 'standalone',
   experimental: {
     outputFileTracingRoot: path.join(__dirname, '../../'),
+    appDir: true,
+    transpilePackages: ["ui"]
   }
-});
+}
