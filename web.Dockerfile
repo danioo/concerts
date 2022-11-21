@@ -1,50 +1,47 @@
-# 1. Install dependencies
-FROM node:16-alpine AS deps
+FROM node:alpine AS builder
 
 RUN apk add --no-cache libc6-compat
- 
-WORKDIR /app
- 
-# Copy root package.json and lockfile
-COPY package.json yarn.lock ./
- 
-# Copy the web package.json
-COPY apps/web/package.json ./apps/web/package.json
- 
-RUN yarn --frozen-lockfile
- 
-# 2. Rebuild the source code
-FROM node:16-alpine AS builder
+RUN apk update
 
+# Set working directory
 WORKDIR /app
-
-COPY --from=deps /app/node_modules ./node_modules
+RUN yarn global add turbo
 COPY . .
+RUN turbo prune --scope=web --docker
+ 
+# Add lockfile and package.json's of isolated subworkspace
+FROM node:alpine AS installer
 
-# COPY .env.development.sample .env.production
-RUN yarn build
-
-# 3. Run production build
-FROM node:16-alpine AS runner
+RUN apk add --no-cache libc6-compat
+RUN apk update
 
 WORKDIR /app
-
-ENV NODE_ENV=production
-
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
-
-COPY --from=builder /app/public ./public
-
+ 
+# First install the dependencies (as they change less often)
+COPY .gitignore .gitignore
+COPY --from=builder /app/out/json/ .
+COPY --from=builder /app/out/yarn.lock ./yarn.lock
+RUN yarn install
+ 
+# Build the project
+COPY --from=builder /app/out/full/ .
+COPY turbo.json turbo.json
+RUN yarn turbo run build --filter=web...
+ 
+FROM node:alpine AS runner
+WORKDIR /app
+ 
+# Don't run production as root
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+USER nextjs
+ 
+COPY --from=installer /app/apps/web/next.config.js .
+COPY --from=installer /app/apps/web/package.json .
+ 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-
-EXPOSE 3000
-
-ENV PORT 3000
-
-CMD ["node", "server.js"]
+COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/web/.next/static
+ 
+CMD node apps/web/server.js
