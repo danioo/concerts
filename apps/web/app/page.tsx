@@ -4,8 +4,9 @@ import { gql } from 'graphql-request'
 import useSWR from 'swr'
 import { Grid } from '@mantine/core';
 
-import { fetcher } from '../libs/fetcher'
-import ConcertCard from '../components/ConcertCard'
+import { fetcher } from '../src/libs/fetcher'
+
+import ConcertCard from '../src/components/ConcertCard'
 
 const CONCERTS_QUERY = gql`
   query Concerts {
@@ -19,7 +20,7 @@ const CONCERTS_QUERY = gql`
   }
 `
 
-export default function Page() {
+export default function HomePage() {
   const { data, error } = useSWR(CONCERTS_QUERY, fetcher)
 
   if (error) {
