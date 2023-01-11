@@ -6,6 +6,7 @@ import {
   IconHome2,
   IconUser,
 } from '@tabler/icons';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -141,7 +142,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <Navbar.Section m="auto">
           <Tooltip label="Account" position="right" withArrow transitionDuration={0}>
             <UnstyledButton className={cx(classes.mainLink)}>
-              <IconUser stroke={1.5} />
+              <Link href="/login">
+                <IconUser stroke={1.5} />
+              </Link>
             </UnstyledButton>
           </Tooltip>
         </Navbar.Section>

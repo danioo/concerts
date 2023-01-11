@@ -7,5 +7,15 @@ module.exports = {
     outputFileTracingRoot: path.join(__dirname, '../../'),
     appDir: true,
     transpilePackages: ["ui"]
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'unsplash.com',
+        port: '',
+        pathname: '/photos/**'
+      }
+    ]
   }
 }

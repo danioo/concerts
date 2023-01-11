@@ -1,6 +1,6 @@
-import { supabaseClient } from '../utils/supabase'
+import { supabaseClient } from '../../utils/supabase'
 
-import ConcertsGrid from '../components/ConcertsGrid'
+import ConcertsGrid from '../../components/ConcertsGrid'
 
 export type Concert = {
   id: string,

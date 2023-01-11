@@ -3,7 +3,7 @@
 import { Grid } from '@mantine/core'
 import { Card } from 'ui/components/Card'
 
-import { Concert } from '../app/page'
+import { Concert } from '../app/(concerts)/page'
 
 type PageProps = {
   concerts: Concert[]
