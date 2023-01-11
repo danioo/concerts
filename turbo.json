@@ -5,6 +5,18 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "public/dist/**"]
     },
+    "web#build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "public/dist/**"
+      ],
+      "env": [
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+      ]
+    },
     "lint": {
       "outputs": []
     },
