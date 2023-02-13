@@ -1,4 +1,6 @@
-import { supabaseClient } from '../../utils/supabase'
+import 'server-only'
+
+import { supabaseBrowserClient } from '../../utils/supabase-browser'
 
 import ConcertsGrid from '../../components/ConcertsGrid'
 
@@ -12,7 +14,7 @@ export type Concert = {
 }
 
 export default async function HomePage() {
-  const { data: concerts } = await supabaseClient.from("concerts").select("*, genres(*)")
+  const { data: concerts } = await supabaseBrowserClient.from("concerts").select("*, genres(*)")
 
   return (
     <ConcertsGrid concerts={concerts as Concert[]} />

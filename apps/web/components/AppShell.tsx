@@ -8,6 +8,8 @@ import {
 } from '@tabler/icons';
 import Link from 'next/link';
 
+import { useAuth } from '../utils/auth';
+
 const useStyles = createStyles((theme) => ({
   wrapper: {
     display: 'flex',
@@ -114,6 +116,7 @@ const mainLinksMockdata = [
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const { classes, cx } = useStyles();
   const [activeLink, setActiveLink] = useState('Home');
+  const { session, user } = useAuth()
 
   const mainLinks = mainLinksMockdata.map((link) => (
       <Tooltip label={link.label} position="right" withArrow transitionDuration={0} key={link.label}>
@@ -142,7 +145,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <Navbar.Section m="auto">
           <Tooltip label="Account" position="right" withArrow transitionDuration={0}>
             <UnstyledButton className={cx(classes.mainLink)}>
-              <Link href="/login">
+              <Link href={session ? "/profile" : "/login"}>
                 <IconUser stroke={1.5} />
               </Link>
             </UnstyledButton>
