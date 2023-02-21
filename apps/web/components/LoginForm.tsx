@@ -9,10 +9,12 @@ import {
   Button,
   Title,
   Text,
-  Anchor,
 } from '@mantine/core';
 import { useForm } from '@mantine/form'
+import { showNotification } from '@mantine/notifications';
+import { IconExclamationMark } from '@tabler/icons';
 import Link from 'next/link';
+import { redirect, useRouter } from 'next/navigation';
 
 import { supabaseBrowserClient } from '../utils/supabase-browser'
 
@@ -53,22 +55,63 @@ const useStyles = createStyles((theme) => ({
 
 export default function LoginForm() {
   const { classes } = useStyles();
+  const router = useRouter();
   const form = useForm({
     initialValues: {
       email: '',
       password: '',
       keepSignedIn: false
-    }
+    },
+    validate: {
+      email: (value) => {
+        const regexp = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/)
+
+        return regexp.test(value) ? null : "Email address is invalid"
+      },
+      password: (value) => {
+        const regexp = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})")
+
+        return regexp.test(value) ? null : "Password is invalid"
+      },
+    },
+    validateInputOnChange: true
   })
 
-  const handleLogin = async (values: {email: string, password: string}) => {
+  const handleSubmit = async (values: {email: string, password: string}) => {
     const { error } = await supabaseBrowserClient.auth.signInWithPassword({
       email: values.email,
       password: values.password
     })
 
     if (error) {
-      console.error(error)
+      console.log(error)
+
+      showNotification({
+        title: "Error!",
+        message: "Invalid email or password",
+        icon: <IconExclamationMark />,
+        color: 'red',
+        styles: (theme) => ({
+          root: {
+            backgroundColor: theme.colors.red[5],
+            borderColor: theme.colors.red[5],
+          },
+          title: { 
+            color: theme.white 
+          },
+          description: { 
+            color: theme.white 
+          },
+          closeButton: {
+            color: theme.white,
+            '&:hover': { 
+              backgroundColor: theme.colors.red[6] 
+            },
+          }
+        })
+      })
+    } else {
+      router.push("/profile")
     }
   }
 
@@ -78,10 +121,10 @@ export default function LoginForm() {
         Welcome back to Concerts!
       </Title>
 
-      <form onSubmit={form.onSubmit(handleLogin)}>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
         <TextInput label="Mail" placeholder="Your mail address" mt="md" size="md" {...form.getInputProps('email')} />
         <PasswordInput label="Password" placeholder="Your password" mt="md" size="md" {...form.getInputProps('password')} />
-        <Checkbox label="Keep me logged in" mt="xl" size="md" {...form.getInputProps('keepSignedIn')} />
+        {/* <Checkbox label="Keep me logged in" mt="xl" size="md" {...form.getInputProps('keepSignedIn')} /> */}
         <Button fullWidth type='submit' mt="xl" size="md">
           Login
         </Button>
@@ -94,12 +137,12 @@ export default function LoginForm() {
         </Link>
       </Text>
 
-      <Text align="center" mt="md">
+      {/* <Text align="center" mt="md">
         Don&apos;t have an account?{' '}
         <Link href="/register">
           Register
         </Link>
-      </Text>
+      </Text> */}
 
       <Text align="center" mt="md">
         <Link href="/">

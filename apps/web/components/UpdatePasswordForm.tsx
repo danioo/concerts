@@ -10,9 +10,11 @@ import {
   Text
 } from '@mantine/core';
 import { useForm } from '@mantine/form'
+import { showNotification } from '@mantine/notifications';
+import { IconCheck, IconExclamationMark } from '@tabler/icons';
 import Link from 'next/link';
-import { useAuth } from '../utils/auth';
 
+import { useAuth } from '../utils/auth';
 import { supabaseBrowserClient } from '../utils/supabase-browser'
 
 const useStyles = createStyles((theme) => ({
@@ -57,7 +59,7 @@ export default function UpdatePasswordForm() {
     initialValues: {
       email: '',
       password: ''
-    }
+    },
   })
 
   const handleResetPassword = async (values: {email: string, password: string}) => {
@@ -67,7 +69,55 @@ export default function UpdatePasswordForm() {
       })
 
       if (resetError) {
-        console.error(resetError)
+        showNotification({
+          title: "Error!",
+          message: "An error occured while trying to reset your password",
+          icon: <IconExclamationMark />,
+          color: 'red',
+          styles: (theme) => ({
+            root: {
+              backgroundColor: theme.colors.red[5],
+              borderColor: theme.colors.red[5],
+            },
+            title: { 
+              color: theme.white 
+            },
+            description: { 
+              color: theme.white 
+            },
+            closeButton: {
+              color: theme.white,
+              '&:hover': { 
+                backgroundColor: theme.colors.red[6] 
+              },
+            }
+          })
+        })
+      } else {
+        showNotification({
+          title: "Success!",
+          message: "Information how to reset password has been sent to your email",
+          icon: <IconCheck />,
+          color: 'green',
+          styles: (theme) => ({
+            root: {
+              backgroundColor: theme.colors.green[5],
+              borderColor: theme.colors.green[5],
+            },
+            title: { 
+              color: theme.white 
+            },
+            description: { 
+              color: theme.white 
+            },
+            closeButton: {
+              color: theme.white,
+              '&:hover': { 
+                backgroundColor: theme.colors.green[6] 
+              },
+            }
+          })
+        })
       }
     }
 
@@ -78,6 +128,56 @@ export default function UpdatePasswordForm() {
 
       if (updateError) {
         console.error(updateError)
+
+        showNotification({
+          title: "Error!",
+          message: "An error occured while trying to set new password",
+          icon: <IconExclamationMark />,
+          color: 'red',
+          styles: (theme) => ({
+            root: {
+              backgroundColor: theme.colors.red[5],
+              borderColor: theme.colors.red[5],
+            },
+            title: { 
+              color: theme.white 
+            },
+            description: { 
+              color: theme.white 
+            },
+            closeButton: {
+              color: theme.white,
+              '&:hover': { 
+                backgroundColor: theme.colors.red[6] 
+              },
+            }
+          })
+        })
+      } else {
+        showNotification({
+          title: "Success!",
+          message: "Your password has been changed",
+          icon: <IconCheck />,
+          color: 'green',
+          styles: (theme) => ({
+            root: {
+              backgroundColor: theme.colors.green[5],
+              borderColor: theme.colors.green[5],
+            },
+            title: { 
+              color: theme.white 
+            },
+            description: { 
+              color: theme.white 
+            },
+            closeButton: {
+              color: theme.white,
+              '&:hover': { 
+                backgroundColor: theme.colors.green[6] 
+              },
+            }
+          })
+        })
       }
     }
   }
