@@ -5,19 +5,31 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.19.3",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-webpack5": "^6.5.12",
-    "@storybook/manager-webpack5": "^6.5.12",
-    "@storybook/react": "^6.5.12",
+    "@storybook/addon-a11y": "^6.5.16",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-coverage": "^0.0.8",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/jest": "^0.0.10",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
+    "@storybook/test-runner": "^0.9.4",
     "@storybook/testing-library": "^0.0.13",
-    "babel-loader": "^8.2.5"
+    "axe-playwright": "^1.2.3",
+    "babel-loader": "^8.2.5",
+    "chromatic": "^6.17.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ui": "*"
+  },
   "scripts": {
     "dev": "start-storybook -p 6006",
-    "build": "build-storybook"
-  }
+    "build": "build-storybook",
+    "test-storybook": "test-storybook --browsers firefox chromium --coverage",
+    "chromatic": "npx chromatic --project-token=cff21795495b"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "storybook@1.0.1"
 }

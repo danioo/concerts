@@ -31,4 +31,4 @@ yarn-error.log*
 
 # turbo
 .turbo
-apps/storybook/storybook-static/
+apps/storybook/storybook-static/*
