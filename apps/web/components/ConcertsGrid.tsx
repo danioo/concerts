@@ -22,6 +22,16 @@ export type Concert = {
     }
   }
 }
+type Variables = {
+  filter: {
+    genre_id?: {
+      eq?: Number | null
+    },
+    place_id?: {
+      eq?: Number | null
+    }
+  }
+}
 
 export default function ConcertsGrid() {
   const { filters } = useFilters()
@@ -34,7 +44,7 @@ export default function ConcertsGrid() {
         eq: null
       }
     }
-  }
+  } as Variables
 
   if (filters.genre !== null) {
     variables.filter.genre_id = { eq: filters.genre }
