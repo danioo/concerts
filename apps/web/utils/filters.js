@@ -5,7 +5,8 @@ export const FiltersContext = createContext()
 export const FiltersProvider = ({ ...props }) => {
   const [ filters, setFilters ] = useState({
     genre: null,
-    place: null
+    place: null,
+    ticketsAvailable: null
   })
 
   const updateFilters = (key, value) => setFilters(prevFilters => ({

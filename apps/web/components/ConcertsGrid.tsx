@@ -29,6 +29,9 @@ type Variables = {
     },
     place_id?: {
       eq?: Number | null
+    },
+    on_sale?: {
+      eq?: boolean | null
     }
   }
 }
@@ -41,6 +44,9 @@ export default function ConcertsGrid() {
         eq: null
       },
       place_id: {
+        eq: null
+      },
+      on_sale: {
         eq: null
       }
     }
@@ -56,6 +62,12 @@ export default function ConcertsGrid() {
     variables.filter.place_id = { eq: filters.place }
   } else {
     delete variables.filter.place_id
+  }
+
+  if (filters.ticketsAvailable !== null) {
+    variables.filter.on_sale = { eq: filters.ticketsAvailable === "true" ? true : false }
+  } else {
+    delete variables.filter.on_sale
   }
 
   const { data, error } = useSWR([`
@@ -78,7 +90,7 @@ export default function ConcertsGrid() {
         }
       }
     }
-  `, variables.filter.genre_id !== null || variables.filter.place_id !== null ? variables : null], ([ query, variables ]) => fetcher(query, variables));
+  `, variables.filter.genre_id !== null || variables.filter.place_id !== null || variables.filter.on_sale !== null ? variables : null], ([ query, variables ]) => fetcher(query, variables));
 
   const concerts = data?.concertsCollection?.edges as Concert[]
 

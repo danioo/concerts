@@ -19,6 +19,7 @@ export default function Filters({ genres, places }: PageProps) {
       <Group>
         <Select label="Genre" placeholder='All genres' clearable data={genres?.map(genre => ({value: genre.id, label: genre.name})) ?? []} onChange={value => setFilters('genre', value)} value={filters.genre} />
         <Select label="Place" placeholder='All places' clearable data={places?.map(place => ({value: place.id, label: place.name})) ?? []} onChange={value => setFilters('place', value)} value={filters.place} />
+        <Select label="Tickets available" placeholder="All availabilities" clearable data={[true, false].map(available => ({value: available ? "true" : "false", label: available ? "Available" : "Not available"}))} onChange={value => setFilters('ticketsAvailable', value)} value={filters.ticketsAvailable} />
       </Group>
     </Box>
   )
