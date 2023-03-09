@@ -1,9 +1,9 @@
 import 'server-only'
 
-import { supabaseBrowserClient } from '../../utils/supabase-browser'
+import { supabaseBrowserClient } from '../../../utils/supabase-browser'
 
-import ConcertsGrid from '../../components/ConcertsGrid'
-import Filters from '../../components/Filters'
+import Filters from '../../../components/Filters'
+import ConcertsTable from '../../../components/ConcertsTable'
 
 export type Genre = {
   id: string,
@@ -27,14 +27,14 @@ async function getPlaces() {
   return places
 }
 
-export default async function ConcertsGridPage() {
+export default async function ConcertsTablePage() {
   const [ genres, places ] = await Promise.all([getGenres(), getPlaces()])
 
   return (
     <>
       <Filters genres={genres as Genre[]} places={places as Place[]} />
 
-      <ConcertsGrid />
+      <ConcertsTable />
     </>
   )
 }

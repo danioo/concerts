@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from 'react';
-import { createStyles, AppShell as _AppShell, Navbar, UnstyledButton, Tooltip, Title, Group, Flex, Text } from '@mantine/core';
+import { createStyles, AppShell as _AppShell, Navbar, UnstyledButton, Tooltip, Text } from '@mantine/core';
 import {
-  IconHome2,
+  IconGridPattern,
+  IconTable,
   IconUser,
 } from '@tabler/icons';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { useAuth } from '../utils/auth';
 
@@ -39,6 +40,7 @@ const useStyles = createStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    paddingRight: 0,
 
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[0],
@@ -110,22 +112,23 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const mainLinksMockdata = [
-  { icon: IconHome2, label: 'Home' },
+  { icon: IconGridPattern, label: 'Grid', href: "/" },
+  { icon: IconTable, label: 'Table', href: "/table" },
 ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const { classes, cx } = useStyles();
-  const [activeLink, setActiveLink] = useState('Home');
-  const { session, user } = useAuth()
+  const { session } = useAuth()
+  const pathname = usePathname()
 
   const mainLinks = mainLinksMockdata.map((link) => (
       <Tooltip label={link.label} position="right" withArrow transitionDuration={0} key={link.label}>
-        <UnstyledButton
-          onClick={() => setActiveLink(link.label)}
-          className={cx(classes.mainLink, { [classes.mainLinkActive]: link.label === activeLink })}
+        <Link
+          href={link.href}
+          className={cx(classes.mainLink, {[classes.mainLinkActive]: pathname === link.href})}
         >
-          <link.icon stroke={1.5} />
-        </UnstyledButton>
+          <link.icon size="2rem" stroke={1.5} />
+        </Link>
       </Tooltip>
     ));
 
