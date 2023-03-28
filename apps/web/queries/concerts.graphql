@@ -1,0 +1,19 @@
+query GetConcerts($filter: concertsFilter!) {
+  concertsCollection(filter: $filter) {
+    edges {
+      node {
+        id
+        title
+        description
+        date
+        on_sale
+        genres {
+          name
+        }
+        places {
+          name
+        }
+      }
+    }
+  }
+}

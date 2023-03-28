@@ -1,16 +1,16 @@
 "use client"
 
 import useSWR from 'swr'
-import { Grid } from '@mantine/core'
+import { ScrollArea, Table } from '@mantine/core'
 
-import { Card } from 'ui/components/Card'
-import { useFilters } from '../utils/filters'
-import { fetcher } from '../utils/fetcher'
 import { Concert, Variables } from '../types/data'
+import { useFilters } from '../utils/filters'
 import ConcertsQuery from '../queries/concerts.graphql'
+import { fetcher } from '../utils/fetcher'
 
-export default function ConcertsGrid() {
+export default function ConcertsTable() {
   const { filters } = useFilters()
+
   const variables = {
     filter: {
       genre_id: {
@@ -48,12 +48,32 @@ export default function ConcertsGrid() {
   const concerts = data?.concertsCollection?.edges as Concert[]
 
   return (
-    <Grid gutter="md">
-      {concerts?.map((concert) => (
-         <Grid.Col span={3} key={concert.node.id}>
-           <Card title={concert.node.title} category={concert.node.genres.name} content={concert.node.description} place={concert.node.places.name} date={concert.node.date} onSale={concert.node.on_sale} />
-         </Grid.Col>
-       ))}
-    </Grid>
+    <ScrollArea>
+      <Table verticalSpacing="md" striped highlightOnHover>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Genre</th>
+            <th>Date</th>
+            <th>Place</th>
+            <th>On sale</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {concerts?.map(concert => (
+            <tr key={concert.node.id}>
+              <td>{concert.node.title}</td>
+              <td>{concert.node.description}</td>
+              <td>{concert.node.genres.name}</td>
+              <td>{concert.node.date}</td>
+              <td>{concert.node.places.name}</td>
+              <td>{concert.node.on_sale ? "Yes" : "No"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </ScrollArea>
   )
 }
