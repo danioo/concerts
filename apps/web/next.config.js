@@ -6,8 +6,8 @@ module.exports = {
   experimental: {
     outputFileTracingRoot: path.join(__dirname, '../../'),
     appDir: true,
-    transpilePackages: ["ui"]
   },
+  transpilePackages: ["ui"],
   images: {
     remotePatterns: [
       {
