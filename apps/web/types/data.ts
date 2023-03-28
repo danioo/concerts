@@ -3,7 +3,7 @@ export type Concert = {
     id: string,
     title: string,
     description: string,
-    date: Date,
+    date: string,
     on_sale: boolean,
     genres: {
       name: string

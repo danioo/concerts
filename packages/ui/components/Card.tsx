@@ -1,3 +1,4 @@
+import { parse, format } from 'date-fns'
 import { createStyles, Card as _Card, Image, Text, Badge, Button, Group } from '@mantine/core'
 
 type CardProps = {
@@ -5,7 +6,7 @@ type CardProps = {
   category: string,
   content: string,
   place: string,
-  date: Date,
+  date: string,
   onSale: boolean
 }
 
@@ -41,7 +42,7 @@ export const Card = ({ title, category, content, place, date, onSale }: CardProp
             Date
           </Text>
           <Text weight={500} size="sm">
-            {date}
+            {format(parse(date, "yyyy-MM-dd", new Date()), 'yyyy-MM-dd')}
           </Text>
         </div>
 
