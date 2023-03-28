@@ -127,7 +127,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           href={link.href}
           className={cx(classes.mainLink, {[classes.mainLinkActive]: pathname === link.href})}
         >
-          <link.icon size="2rem" stroke={1.5} />
+          <link.icon size="1.5rem" stroke={1.5} />
         </Link>
       </Tooltip>
     ));
