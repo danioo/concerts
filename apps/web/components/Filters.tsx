@@ -3,7 +3,7 @@
 import { Box, Group, Select } from '@mantine/core'
 
 import { useFilters } from '../utils/filters'
-import { Genre, Place } from '../app/(concerts)/page'
+import { Genre, Place } from '../app/concerts/page'
 
 type PageProps = {
   genres: Genre[],

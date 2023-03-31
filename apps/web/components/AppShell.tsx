@@ -67,17 +67,10 @@ const useStyles = createStyles((theme) => ({
     }`,
   },
 
-  logo: {
-    boxSizing: 'border-box',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    height: 60,
-    paddingTop: theme.spacing.md,
-    borderBottom: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
-    }`,
-    marginBottom: theme.spacing.xl,
+  logoLink: {
+    textDecoration: 'none',
+    padding: theme.spacing.lg,
+    textAlign: 'center',
   },
 
   link: {
@@ -112,8 +105,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const mainLinksMockdata = [
-  { icon: IconGridPattern, label: 'Grid', href: "/" },
-  { icon: IconTable, label: 'Table', href: "/table" },
+  { icon: IconGridPattern, label: 'Grid', href: "/concerts" },
+  { icon: IconTable, label: 'Table', href: "/concerts/table" },
 ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
@@ -135,10 +128,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <_AppShell padding="md" navbar={
       <Navbar width={{ sm: 50 }}>
-        <Navbar.Section m="auto" p="lg">
-          <Text fz="xl" c="teal" fw="bolder">
-            C
-          </Text>
+        <Navbar.Section m="auto">
+          <Link href="/" className={cx(classes.logoLink)}>
+            <Text fz="xl" c="teal" fw="bolder">
+              C
+            </Text>
+          </Link>
         </Navbar.Section>
 
         <Navbar.Section grow m="auto">
