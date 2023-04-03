@@ -16,7 +16,7 @@
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/react": "^6.5.16",
     "@storybook/test-runner": "^0.9.4",
-    "@storybook/testing-library": "^0.0.13",
+    "@storybook/testing-library": "^0.1.0",
     "axe-playwright": "^1.2.3",
     "babel-loader": "^8.2.5",
     "chromatic": "^6.17.0"
