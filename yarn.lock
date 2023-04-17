@@ -2369,13 +2369,13 @@
   resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-5.8.2.tgz#1dddf11904475bff2511acf9f55a073b2fecf266"
   integrity sha512-j/jdEqp0NgJzel6hdVfU4U3YGFOrCo5UKHBzvRKxpF8+PSY2i2nRY8XqkR0qp5yGjhgwl9uiZRbUTK9a1MxNwg==
 
-"@mantine/next@^6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@mantine/next/-/next-6.0.4.tgz#060f2d759362fc42a30d59a2f6c0179253b4d1a4"
-  integrity sha512-/HvAZNe15v8DIjooJ62KKnSPmFlF6Kg9iyFkjTLlPxFIf5/4uCfPPQcIpWAXk7ZfkQSnHbmdNbbizhadBS57qQ==
+"@mantine/next@^6.0.7":
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/@mantine/next/-/next-6.0.7.tgz#385a86a2508d14ec176c29add1a059aed322690c"
+  integrity sha512-rApagxmFpdI7glLeQIgq/+rX+X2Xyeu719FSnCOS7Ce8OXqcckgMyzx36oFko0I95zr7vDDzn71+V0rkmoULkw==
   dependencies:
-    "@mantine/ssr" "6.0.4"
-    "@mantine/styles" "6.0.4"
+    "@mantine/ssr" "6.0.7"
+    "@mantine/styles" "6.0.7"
 
 "@mantine/notifications@^5.10.4":
   version "5.10.4"
@@ -2385,12 +2385,12 @@
     "@mantine/utils" "5.10.4"
     react-transition-group "4.4.2"
 
-"@mantine/ssr@6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@mantine/ssr/-/ssr-6.0.4.tgz#a4385385f3a2a0b56f507fbc904a3e1916e62045"
-  integrity sha512-e/ZwBj4+qG0+23MeChCVHUxVeNwplTyvMsqz8JAokaKcebdyuR42YWFbo21cGpulT8lAewd+EmpeKRk3lmZwwg==
+"@mantine/ssr@6.0.7":
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/@mantine/ssr/-/ssr-6.0.7.tgz#4fdb8d88c4cacf27bedf65060e866213c5c50d88"
+  integrity sha512-v1IT0C4sXh6h9IM8UWFXCBJhgiZjSt2hCPwS+Wjw6RAxCDH3/pq97v0zMKDWbIIR2AueaISRujPk3ON11IG6MQ==
   dependencies:
-    "@mantine/styles" "6.0.4"
+    "@mantine/styles" "6.0.7"
     html-react-parser "1.4.12"
 
 "@mantine/styles@5.8.2":
@@ -2401,10 +2401,10 @@
     clsx "1.1.1"
     csstype "3.0.9"
 
-"@mantine/styles@6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@mantine/styles/-/styles-6.0.4.tgz#c76db96cda89de271f1a1bfcdb328aa093d2cc5b"
-  integrity sha512-DbyshlwoCjn3Yw2iMNzo1fv+3TJcZgwjB86JvxcfjJwz6Br5IzsVlJPcK9kcTbzvcN1kMT07y5aK+3pZv7qBFw==
+"@mantine/styles@6.0.7":
+  version "6.0.7"
+  resolved "https://registry.yarnpkg.com/@mantine/styles/-/styles-6.0.7.tgz#39121c4a5f6268afd5ab5c18a0dda6835199d4dc"
+  integrity sha512-vbR2I853wFY40NOi66N97n3pstjA0bEU1Y0QitX1EAOvmHvuzTuaUtrEq9EqHOiwx8h9e0TndqsYapjDbkw0eg==
   dependencies:
     clsx "1.1.1"
     csstype "3.0.9"
