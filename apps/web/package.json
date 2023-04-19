@@ -6,11 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:graphql-types": "graphql-codegen",
+    "generate:database-types": "supabase gen types typescript --project-id jdjjodoknqyekyvtepga --schema public > types/supabase.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
+    "@graphql-codegen/client-preset": "^2.1.1",
     "@mantine/core": "^5.8.2",
     "@mantine/form": "^6.0.6",
     "@mantine/hooks": "^5.8.2",
@@ -35,10 +38,12 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@types/node": "^18.15.11",
+    "@graphql-codegen/cli": "^3.2.2",
     "@types/react": "18.0.17",
     "eslint": "8.38.0",
     "eslint-config-custom": "*",
     "next-transpile-modules": "9.0.0",
+    "supabase": "^1.46.5",
     "tsconfig": "*",
     "typescript": "^5.0.2"
   }

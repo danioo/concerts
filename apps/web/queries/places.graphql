@@ -1,0 +1,10 @@
+query GetPlaces {
+  placesCollection {
+    edges {
+      node {
+        id
+        name
+      }
+    }
+  }
+}

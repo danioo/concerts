@@ -15,7 +15,8 @@ import { IconCheck, IconExclamationMark } from '@tabler/icons';
 import Link from 'next/link';
 
 import { useAuth } from '../utils/auth';
-import { supabaseBrowserClient } from '../utils/supabase-browser'
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { Database } from '../types/supabase';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -55,6 +56,7 @@ const useStyles = createStyles((theme) => ({
 export default function UpdatePasswordForm() {
   const { classes } = useStyles()
   const { session, user } = useAuth()
+  const supabaseClient = useSupabaseClient<Database>()
   const form = useForm({
     initialValues: {
       email: '',
@@ -64,7 +66,7 @@ export default function UpdatePasswordForm() {
 
   const handleResetPassword = async (values: {email: string, password: string}) => {
     if (values.email) {
-      const { error: resetError } = await  supabaseBrowserClient.auth.resetPasswordForEmail(values.email, {
+      const { error: resetError } = await  supabaseClient.auth.resetPasswordForEmail(values.email, {
         redirectTo: "http://localhost:3000/update-password"
       })
 
@@ -79,16 +81,16 @@ export default function UpdatePasswordForm() {
               backgroundColor: theme.colors.red[5],
               borderColor: theme.colors.red[5],
             },
-            title: { 
-              color: theme.white 
+            title: {
+              color: theme.white
             },
-            description: { 
-              color: theme.white 
+            description: {
+              color: theme.white
             },
             closeButton: {
               color: theme.white,
-              '&:hover': { 
-                backgroundColor: theme.colors.red[6] 
+              '&:hover': {
+                backgroundColor: theme.colors.red[6]
               },
             }
           })
@@ -104,16 +106,16 @@ export default function UpdatePasswordForm() {
               backgroundColor: theme.colors.green[5],
               borderColor: theme.colors.green[5],
             },
-            title: { 
-              color: theme.white 
+            title: {
+              color: theme.white
             },
-            description: { 
-              color: theme.white 
+            description: {
+              color: theme.white
             },
             closeButton: {
               color: theme.white,
-              '&:hover': { 
-                backgroundColor: theme.colors.green[6] 
+              '&:hover': {
+                backgroundColor: theme.colors.green[6]
               },
             }
           })
@@ -122,7 +124,7 @@ export default function UpdatePasswordForm() {
     }
 
     if (values.password) {
-      const { error: updateError } = await supabaseBrowserClient.auth.updateUser({
+      const { error: updateError } = await supabaseClient.auth.updateUser({
         password: values.password
       })
 
@@ -139,16 +141,16 @@ export default function UpdatePasswordForm() {
               backgroundColor: theme.colors.red[5],
               borderColor: theme.colors.red[5],
             },
-            title: { 
-              color: theme.white 
+            title: {
+              color: theme.white
             },
-            description: { 
-              color: theme.white 
+            description: {
+              color: theme.white
             },
             closeButton: {
               color: theme.white,
-              '&:hover': { 
-                backgroundColor: theme.colors.red[6] 
+              '&:hover': {
+                backgroundColor: theme.colors.red[6]
               },
             }
           })
@@ -164,16 +166,16 @@ export default function UpdatePasswordForm() {
               backgroundColor: theme.colors.green[5],
               borderColor: theme.colors.green[5],
             },
-            title: { 
-              color: theme.white 
+            title: {
+              color: theme.white
             },
-            description: { 
-              color: theme.white 
+            description: {
+              color: theme.white
             },
             closeButton: {
               color: theme.white,
-              '&:hover': { 
-                backgroundColor: theme.colors.green[6] 
+              '&:hover': {
+                backgroundColor: theme.colors.green[6]
               },
             }
           })

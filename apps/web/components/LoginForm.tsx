@@ -15,8 +15,9 @@ import { showNotification } from '@mantine/notifications';
 import { IconExclamationMark } from '@tabler/icons';
 import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
-import { supabaseBrowserClient } from '../utils/supabase-browser'
+import { Database } from '../types/supabase';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -56,6 +57,7 @@ const useStyles = createStyles((theme) => ({
 export default function LoginForm() {
   const { classes } = useStyles();
   const router = useRouter();
+  const supabaseClient = useSupabaseClient<Database>()
   const form = useForm({
     initialValues: {
       email: '',
@@ -78,7 +80,7 @@ export default function LoginForm() {
   })
 
   const handleSubmit = async (values: {email: string, password: string}) => {
-    const { error } = await supabaseBrowserClient.auth.signInWithPassword({
+    const { error } = await supabaseClient.auth.signInWithPassword({
       email: values.email,
       password: values.password
     })
@@ -96,16 +98,16 @@ export default function LoginForm() {
             backgroundColor: theme.colors.red[5],
             borderColor: theme.colors.red[5],
           },
-          title: { 
-            color: theme.white 
+          title: {
+            color: theme.white
           },
-          description: { 
-            color: theme.white 
+          description: {
+            color: theme.white
           },
           closeButton: {
             color: theme.white,
-            '&:hover': { 
-              backgroundColor: theme.colors.red[6] 
+            '&:hover': {
+              backgroundColor: theme.colors.red[6]
             },
           }
         })
