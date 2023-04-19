@@ -12,8 +12,7 @@
     "lint": "dotenv -- turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
-    "version-packages": "changeset version",
-    "generate-types": "npx supabase gen types typescript --project-id jdjjodoknqyekyvtepga --schema public > apps/web/types/supabase.ts"
+    "version-packages": "changeset version"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",

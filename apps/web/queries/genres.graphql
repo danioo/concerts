@@ -1,0 +1,10 @@
+query GetGenres {
+  genresCollection {
+    edges {
+      node {
+        id
+        name
+      }
+    }
+  }
+}
