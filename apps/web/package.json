@@ -42,7 +42,7 @@
     "@types/react": "18.0.17",
     "eslint": "8.38.0",
     "eslint-config-custom": "*",
-    "next-transpile-modules": "9.0.0",
+    "next-transpile-modules": "10.0.0",
     "supabase": "^1.46.5",
     "tsconfig": "*",
     "typescript": "^5.0.2"
