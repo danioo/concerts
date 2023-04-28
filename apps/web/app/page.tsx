@@ -1,5 +1,4 @@
 import { supabaseServerClient } from '../utils/supabase-server'
-
 import Hero from "../components/Hero";
 
 export const metadata = {

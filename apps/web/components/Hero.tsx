@@ -3,6 +3,7 @@
 import { Title, Text, Container, Button, Overlay, createStyles, Paper, Group, Center, SimpleGrid } from '@mantine/core';
 import { IconMapPins, IconTimelineEvent, IconUsers } from '@tabler/icons';
 import Link from 'next/link';
+import { useVariableValue } from '@devcycle/devcycle-react-sdk'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -88,8 +89,7 @@ export type HeroProps = {
 
 export default function Hero({ concertsCount, placesCount, usersCount }: HeroProps) {
   const { classes } = useStyles();
-  const max = Math.max(concertsCount, placesCount, usersCount)
-  console.log(concertsCount, placesCount, usersCount, max)
+  const isVideoEnabled = useVariableValue('homepage-video', false)
 
   return (
     <div className={classes.wrapper}>
@@ -108,6 +108,10 @@ export default function Hero({ concertsCount, placesCount, usersCount }: HeroPro
             Check database of concerts that take place all over world and find the one next to you!
           </Text>
         </Container>
+
+        {isVideoEnabled && (
+          <div>Here there will be a video</div>
+        )}
 
         <Paper withBorder radius="md" m="lg" p="lg">
           <SimpleGrid cols={3}>
