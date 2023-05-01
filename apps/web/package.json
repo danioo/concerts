@@ -46,6 +46,6 @@
     "next-transpile-modules": "10.0.0",
     "supabase": "^1.46.5",
     "tsconfig": "*",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.4"
   }
 }
