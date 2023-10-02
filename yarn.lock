@@ -5693,10 +5693,10 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@tabler/icons@^1.112.0":
-  version "1.112.0"
-  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-1.112.0.tgz#6119c6046085a06d4246b1ffab7f1c1435d736b5"
-  integrity sha512-M1FmEXqeOUG1iZOLue1aLKEl+E3HHU1JaXb/LmZuOjOWuhHHpfQnSv+mgSmupehophq5piwSPhqnytt1Uh6oLw==
+"@tabler/icons@^2.38.0":
+  version "2.38.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.38.0.tgz#fe79c675aafa9a2bbacb6d3c02d6b38662fae890"
+  integrity sha512-icDKK6n8jUYAavHK+L2Xe0/tYjwZVS7uhVazhCMVjdm3RfJLFbeLSNEIWcYdGOg6QAock9yqWse8hnhvsy2M3w==
 
 "@testing-library/dom@^9.0.0":
   version "9.3.1"
