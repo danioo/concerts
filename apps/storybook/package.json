@@ -8,7 +8,7 @@
     "@storybook/addon-a11y": "^7.0.22",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-coverage": "^0.0.8",
-    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.3.2",
     "@storybook/addon-links": "^7.0.22",
     "@storybook/builder-webpack5": "^7.0.23",
